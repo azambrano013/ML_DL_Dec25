@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberto Zambrano</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #f5f5f5;
+            --color-bg-white: #ffffff;
+            --color-text: #1a1a1a;
+            --color-text-mid: #4a4a4a;
+            --color-text-light: #8a8a8a;
+            --color-accent: #0a66c2;
+            --color-accent-light: #e8f4fc;
+            --color-border: #e5e5e5;
+            --font-main: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            font-size: clamp(16px, 1.4vw, 22px);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Full screen two-panel layout */
+        .page {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        /* Left Panel - White */
+        .left-panel {
+            background: var(--color-bg-white);
+            padding: clamp(2rem, 4vw, 5rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            border-right: 1px solid var(--color-border);
+        }
+
+        .left-content {
+            width: 100%;
+            max-width: clamp(320px, 24vw, 450px);
+        }
+
+        .profile-photo {
+            width: clamp(180px, 14vw, 260px);
+            height: clamp(180px, 14vw, 260px);
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1.25rem;
+        }
+
+        h1 {
+            font-size: clamp(1.75rem, 2.2vw, 2.75rem);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .subtitle {
+            font-size: 0.9375rem;
+            color: var(--color-text-mid);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .subtitle a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .subtitle a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Links */
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--color-text-mid);
+            text-decoration: none;
+            padding: 0.25rem 0;
+            transition: color 0.2s;
+        }
+
+        .contact-link:hover {
+            color: var(--color-accent);
+        }
+
+        .contact-link svg {
+            width: 18px;
+            height: 18px;
+            opacity: 0.5;
+        }
+
+        /* Languages */
+        .languages {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .lang-tag {
+            background: var(--color-bg);
+            padding: 0.375rem 0.75rem;
+            font-size: 0.8125rem;
+            border-radius: 6px;
+            color: var(--color-text-mid);
+        }
+
+        /* Right Panel - Gray */
+        .right-panel {
+            padding: clamp(2rem, 4vw, 5rem);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .right-content {
+            width: 100%;
+            max-width: clamp(380px, 28vw, 520px);
+        }
+
+        .section {
+            margin-bottom: 1.75rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+            margin-bottom: 0.625rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .bio {
+            font-size: 0.9375rem;
+            color: var(--color-text-mid);
+            line-height: 1.65;
+        }
+
+        .bio a {
+            color: var(--color-text);
+            text-decoration: underline;
+            text-decoration-color: var(--color-border);
+            text-underline-offset: 2px;
+            transition: text-decoration-color 0.2s;
+        }
+
+        .bio a:hover {
+            text-decoration-color: var(--color-text);
+        }
+
+        /* Skills Pills */
+        .skills-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.375rem;
+        }
+
+        .pill {
+            background: var(--color-bg-white);
+            border: 1px solid var(--color-border);
+            padding: 0.375rem 0.75rem;
+            font-size: 0.8125rem;
+            border-radius: 100px;
+            color: var(--color-text-mid);
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .pill:hover {
+            border-color: var(--color-accent);
+            background: var(--color-accent-light);
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 1rem;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-item p {
+            font-size: 0.875rem;
+            color: var(--color-text-mid);
+        }
+
+        .experience-item strong {
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .experience-item .company {
+            font-size: 0.8125rem;
+            color: var(--color-text-light);
+            margin-top: 0.125rem;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: var(--color-text-light);
+        }
+
+        /* Mobile */
+        @media (max-width: 800px) {
+            .page {
+                grid-template-columns: 1fr;
+            }
+
+            .left-panel {
+                align-items: flex-start;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                padding: 2rem 1.5rem;
+            }
+
+            .left-content,
+            .right-content {
+                max-width: 100%;
+            }
+
+            .right-panel {
+                padding: 2rem 1.5rem;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                white-space: normal;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="left-panel">
+            <div class="left-content">
+                <img src="photo.jpg" alt="Alberto Zambrano" class="profile-photo">
+                <h1>Alberto Zambrano</h1>
+                <p class="subtitle">Data Scientist at <a href="https://www.deloitte.com" target="_blank">Deloitte</a><br>Santiago, Chile</p>
+                
+                <div class="contact-list">
+                    <a href="https://www.linkedin.com/in/alberto-zambrano" target="_blank" class="contact-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                        </svg>
+                        LinkedIn
+                    </a>
+                </div>
+
+                <div class="languages">
+                    <span class="lang-tag">English</span>
+                    <span class="lang-tag">Spanish</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="right-content">
+                <div class="section">
+                    <div class="section-title">About</div>
+                    <p class="bio">
+                        Fully bilingual English/Spanish Data Scientist with strong communication and agile project management skills. Experienced in statistical techniques for management monitoring, Excel Suite of Data Analysis Tools, and Python Tools for Data Sciences. Over five years of experience building dashboards for leadership and expertise in cloud computing.
+                    </p>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Top Skills</div>
+                    <div class="skills-pills">
+                        <span class="pill">Microsoft Power Query</span>
+                        <span class="pill">Project Management</span>
+                        <span class="pill">Microsoft Excel</span>
+                        <span class="pill">Analytical Skills</span>
+                        <span class="pill">Python</span>
+                        <span class="pill">SQL</span>
+                        <span class="pill">Machine Learning</span>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Experience</div>
+                    <div class="experience-item">
+                        <p><strong>Data Scientist</strong></p>
+                        <p class="company">Deloitte</p>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Education</div>
+                    <div class="experience-item">
+                        <p><strong>Universidad Adolfo Ibáñez</strong></p>
+                    </div>
+                </div>
+
+                <div class="footer">
+                    © 2025 Alberto Zambrano
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
